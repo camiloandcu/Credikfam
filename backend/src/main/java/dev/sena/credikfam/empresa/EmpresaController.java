@@ -31,8 +31,21 @@ public class EmpresaController {
         return empresa.get();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
     void create(@RequestBody Empresa empresa) {
         empresaRepository.create(empresa);
     }
-    
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}")
+    void update(@RequestBody Empresa empresa, @PathVariable Integer id) {
+        empresaRepository.update(empresa, id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable Integer id) {
+        empresaRepository.delete(id);
+    }
 }

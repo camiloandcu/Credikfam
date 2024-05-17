@@ -12,6 +12,20 @@ public class EmpresaRepository {
 
     private List<Empresa> empresas = new ArrayList<>();
 
+    @PostConstruct
+    private void init() {
+        empresas.add(new Empresa(
+                1,
+                "CSC",
+                "Empresa de créditos de alto valor"
+        ));
+        empresas.add(new Empresa(
+                2,
+                "Credicolombia",
+                "Empresa de créditos a bajo interés"
+        ));
+    }
+
     List<Empresa> findAll() {
         return empresas;
     }
@@ -26,18 +40,16 @@ public class EmpresaRepository {
         empresas.add(empresa);
     }
 
-    @PostConstruct
-    private void init() {
-        empresas.add(new Empresa(
-                1,
-                "CSC",
-                "Empresa de créditos de alto valor"
-        ));
-        empresas.add(new Empresa(
-                2,
-                "Credicolombia",
-                "Empresa de créditos a bajo interés"
-        ));
+    void update(Empresa empresa, Integer id) {
+        Optional<Empresa> empresaExistente = findById(id);
+        if(empresaExistente.isPresent()) {
+            empresas.set(empresas.indexOf(empresaExistente.get()), empresa);
+        }
     }
+
+    void delete(Integer id) {
+        empresas.removeIf(empresa -> empresa.id().equals(id));
+    }
+
 
 }
