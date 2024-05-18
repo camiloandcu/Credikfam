@@ -1,5 +1,6 @@
 package dev.sena.credikfam.empresa;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,20 +27,20 @@ public class EmpresaController {
     Empresa findById(@PathVariable Integer id) {
         Optional<Empresa> empresa = empresaRepository.findById(id);
         if(empresa.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new EmpresaNotFoundException();
         }
         return empresa.get();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    void create(@RequestBody Empresa empresa) {
+    void create(@Valid @RequestBody Empresa empresa) {
         empresaRepository.create(empresa);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update(@RequestBody Empresa empresa, @PathVariable Integer id) {
+    void update(@Valid @RequestBody Empresa empresa, @PathVariable Integer id) {
         empresaRepository.update(empresa, id);
     }
 
