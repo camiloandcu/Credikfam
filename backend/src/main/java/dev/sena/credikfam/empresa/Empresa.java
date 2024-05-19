@@ -1,11 +1,25 @@
 package dev.sena.credikfam.empresa;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public record Empresa(
-        Integer id,
-        @NotEmpty
-        String nombre,
-        String descripcion
-) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "Empresa")
+public class Empresa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "descripcion")
+    private String descripcion;
 }

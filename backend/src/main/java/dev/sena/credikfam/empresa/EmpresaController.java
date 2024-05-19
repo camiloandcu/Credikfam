@@ -2,51 +2,35 @@ package dev.sena.credikfam.empresa;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/empresas")
 public class EmpresaController {
 
-    private final EmpresaRepository empresaRepository;
+    private EmpresaService empresaService;
 
-    public EmpresaController(EmpresaRepository empresaRepository) {
-        this.empresaRepository = empresaRepository;
+    public EmpresaController(EmpresaService empresaService) {
+        this.empresaService = empresaService;
     }
 
     @GetMapping("")
-    List<Empresa> findAll() {
-        return empresaRepository.findAll();
+    public ResponseEntity<List<EmpresaDto>> findAll() {
+        List<EmpresaDto> empresas = empresaService.findAll();
+        return ResponseEntity.ok(empresas);
     }
 
     @GetMapping("/{id}")
-    Empresa findById(@PathVariable Integer id) {
-        Optional<Empresa> empresa = empresaRepository.findById(id);
-        if(empresa.isEmpty()) {
-            throw new EmpresaNotFoundException();
-        }
-        return empresa.get();
+    public ResponseEntity<EmpresaDto> findById(@PathVariable Long id) {
+        EmpresaDto empresaDto = empresaService.findById(id);
+        return ResponseEntity.ok(empresaDto);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    void create(@Valid @RequestBody Empresa empresa) {
-        empresaRepository.create(empresa);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/{id}")
-    void update(@Valid @RequestBody Empresa empresa, @PathVariable Integer id) {
-        empresaRepository.update(empresa, id);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
-    void delete(@PathVariable Integer id) {
-        empresaRepository.delete(id);
+    public ResponseEntity<EmpresaDto> create(@RequestBody EmpresaDto empresaDto) {
+        return new ResponseEntity<>(empresaService.create(empresaDto), HttpStatus.CREATED);
     }
 }
