@@ -1,20 +1,13 @@
 package dev.sena.credikfam.empresa;
 
-public class EmpresaMapper {
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-    public static Empresa mapToEmpresa(EmpresaDto empresaDto){
-        return new Empresa(
-                empresaDto.getId(),
-                empresaDto.getNombre(),
-                empresaDto.getDescripcion()
-        );
-    }
+@Mapper(componentModel = "spring")
+public interface EmpresaMapper {
 
-    public static EmpresaDto mapToEmpresaDto(Empresa empresa){
-        return new EmpresaDto(
-                empresa.getId(),
-                empresa.getNombre(),
-                empresa.getDescripcion()
-        );
-    }
+  EmpresaMapper INSTANCE = Mappers.getMapper(EmpresaMapper.class);
+  EmpresaDto toDto(Empresa empresa);
+  Empresa toEntity(EmpresaDto empresaDto);
+
 }

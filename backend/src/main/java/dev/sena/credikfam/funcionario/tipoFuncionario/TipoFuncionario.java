@@ -1,5 +1,6 @@
-package dev.sena.credikfam.empresa;
+package dev.sena.credikfam.funcionario.tipoFuncionario;
 
+import dev.sena.credikfam.empresa.Empresa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,18 +9,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "Empresa")
-public class Empresa {
+@Table(name = "TipoFuncionario")
+public class TipoFuncionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
-
-    @Column(name = "descripcion")
-    private String descripcion;
+    @Column(name = "tipo", nullable = false)
+    private String empresa;
 }
