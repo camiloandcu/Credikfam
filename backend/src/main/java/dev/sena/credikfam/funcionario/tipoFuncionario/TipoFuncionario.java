@@ -16,8 +16,8 @@ import lombok.Setter;
 public class TipoFuncionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long tipoFuncionarioId;
 
     @Column(name = "tipo", nullable = false)
-    private String empresa;
+    private String tipo;
 }

@@ -8,12 +8,12 @@ import org.mapstruct.factory.Mappers;
 public interface FuncionarioMapper {
 
     FuncionarioMapper INSTANCE = Mappers.getMapper(FuncionarioMapper.class);
-    @Mapping(source = "empresa.id", target = "empresaId")
-    @Mapping(source = "tipoFuncionario.id", target = "tipoFuncionarioId")
+    @Mapping(source = "empresa.empresaId", target = "empresaId")
+    @Mapping(source = "tipoFuncionario.tipoFuncionarioId", target = "tipoFuncionarioId")
     FuncionarioDto toDto(Funcionario funcionario);
 
-    @Mapping(source = "empresaId", target = "empresa.id")
-    @Mapping(source = "tipoFuncionarioId", target = "tipoFuncionario.id")
+    @Mapping(source = "empresaId", target = "empresa.empresaId")
+    @Mapping(source = "tipoFuncionarioId", target = "tipoFuncionario.tipoFuncionarioId")
     Funcionario toEntity(FuncionarioDto funcionarioDto);
 
 }

@@ -17,13 +17,13 @@ import lombok.Setter;
 public class Funcionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long funcionarioId;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "tipo_funcionario_id", nullable = false)
     private TipoFuncionario tipoFuncionario;
 

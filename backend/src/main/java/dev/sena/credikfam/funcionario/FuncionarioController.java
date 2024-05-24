@@ -34,7 +34,7 @@ public class FuncionarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<FuncionarioDto> update(@PathVariable Long id, @RequestBody FuncionarioDto funcionarioDto) {
-        funcionarioDto.setId(id);
+        funcionarioDto.setFuncionarioId(id);
         FuncionarioDto updatedFuncionario = funcionarioService.save(funcionarioDto);
         return ResponseEntity.ok(updatedFuncionario);
     }

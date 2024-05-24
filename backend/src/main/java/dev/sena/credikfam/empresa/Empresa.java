@@ -15,11 +15,13 @@ import lombok.Setter;
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long empresaId;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
     @Column(name = "descripcion")
     private String descripcion;
+
+    // TODO: Funcionario debería ser cascade de Empresa?
 }
