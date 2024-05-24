@@ -37,7 +37,7 @@
 <h3 align="center">Credikfam</h3>
 
   <p align="center">
-    Credikfam is a full-stack application designed to manage various entities related to credit management, such as companies (Empresas), employees (Funcionarios), customers (Clientes), credit requests (Creditos), analysis reports (Analisis), and more. The backend demonstrates the use of JPA (Jakarta Persistence API) for database operations, alongside RESTful web services to handle HTTP requests.
+    Credikfam is a full-stack application designed to manage various entities related to credit management, such as companies (Empresas), employees (Funcionarios), customers (Clientes), credit requests (Creditos), analysis reports (Analisis), and more.
     <br />
     <a href="https://github.com/camiloandcu/Credikfam"><strong>Explore the docs »</strong></a>
     <br />
