@@ -3,9 +3,11 @@ package dev.sena.credikfam.empresa;
 import java.util.List;
 
 public interface EmpresaService {
-    EmpresaDto create(EmpresaDto empresa);
+    List<EmpresaDto> findAll();
 
     EmpresaDto findById(Long id);
 
-    List<EmpresaDto> findAll();
+    EmpresaDto save(EmpresaDto empresa);
+
+    void delete(Long id);
 }

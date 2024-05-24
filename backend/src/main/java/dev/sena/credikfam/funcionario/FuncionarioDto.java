@@ -1,4 +1,4 @@
-package dev.sena.credikfam.empresa;
+package dev.sena.credikfam.funcionario;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmpresaDto {
+public class FuncionarioDto {
+    private Long funcionarioId;
     private Long empresaId;
+    private Long tipoFuncionarioId;
     private String nombre;
-    private String descripcion;
+    private String apellido;
 }

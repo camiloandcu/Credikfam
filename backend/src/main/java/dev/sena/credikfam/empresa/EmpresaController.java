@@ -31,6 +31,13 @@ public class EmpresaController {
 
     @PostMapping("")
     public ResponseEntity<EmpresaDto> create(@RequestBody EmpresaDto empresaDto) {
-        return new ResponseEntity<>(empresaService.create(empresaDto), HttpStatus.CREATED);
+        EmpresaDto createdEmpresa = empresaService.save(empresaDto);
+        return new ResponseEntity<>(createdEmpresa, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        empresaService.delete(id);
+        return ResponseEntity.ok("Empresa eliminada exitosamente");
     }
 }

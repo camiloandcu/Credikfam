@@ -8,31 +8,41 @@ import java.util.stream.Collectors;
 @Service
 public class EmpresaServiceImpl implements EmpresaService {
 
-    private EmpresaRepository empresaRepository;
+    private final EmpresaRepository empresaRepository;
+    private final EmpresaMapper empresaMapper;
 
-    public EmpresaServiceImpl(EmpresaRepository empresaRepository) {
+    public EmpresaServiceImpl(EmpresaRepository empresaRepository, EmpresaMapper empresaMapper) {
         this.empresaRepository = empresaRepository;
-    }
-
-    @Override
-    public EmpresaDto create(EmpresaDto empresaDto) {
-        Empresa empresa = EmpresaMapper.mapToEmpresa(empresaDto);
-        Empresa empresaGuardada = empresaRepository.save(empresa);
-        return EmpresaMapper.mapToEmpresaDto(empresaGuardada);
-    }
-
-    @Override
-    public EmpresaDto findById(Long id) {
-        Empresa empresa = empresaRepository
-                .findById(id)
-                .orElseThrow(() -> new RuntimeException("Empresa no existe"));
-        return EmpresaMapper.mapToEmpresaDto(empresa);
+        this.empresaMapper = empresaMapper;
     }
 
     @Override
     public List<EmpresaDto> findAll() {
         List<Empresa> empresas = empresaRepository.findAll();
-        return empresas.stream().map(EmpresaMapper::mapToEmpresaDto)
+        return empresas.stream()
+                .map(empresaMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public EmpresaDto findById(Long id) {
+        Empresa empresa = empresaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Empresa no existe"));
+        return empresaMapper.toDto(empresa);
+    }
+
+    @Override
+    public EmpresaDto save(EmpresaDto empresaDto) {
+        Empresa empresa = empresaMapper.toEntity(empresaDto);
+        empresa = empresaRepository.save(empresa);
+        return empresaMapper.toDto(empresa);
+    }
+
+    @Override
+    public void delete(Long id) {
+        empresaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Empresa no existe"));
+
+        empresaRepository.deleteById(id);
     }
 }
