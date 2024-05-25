@@ -37,7 +37,7 @@
 <h3 align="center">Credikfam</h3>
 
   <p align="center">
-    Credikfam is a full-stack application designed to manage various entities related to credit management, such as companies (Empresas), employees (Funcionarios), customers (Clientes), credit requests (Creditos), analysis reports (Analisis), and more. The backend demonstrates the use of JPA (Jakarta Persistence API) for database operations, alongside RESTful web services to handle HTTP requests.
+    Credikfam is a full-stack application designed to manage various entities related to credit management, such as companies (Empresas), employees (Funcionarios), customers (Clientes), credit requests (Creditos), analysis reports (Analisis), and more.
     <br />
     <a href="https://github.com/camiloandcu/Credikfam"><strong>Explore the docs »</strong></a>
     <br />
@@ -92,6 +92,7 @@ The idea for Credikfam emerged because we wanted to build a system that could ha
 
 ### Built With
 
+* [![Docker][Docker]][Docker-url]
 * [![Spring Boot][SpringBoot]][SpringBoot-url]
 * [![React][React.js]][React-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
@@ -107,10 +108,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Docker
 
 ### Installation
 
@@ -118,7 +116,11 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/camiloandcu/Credikfam.git
    ```
-2. (Documentation still in process) 
+2. Use docker-compose
+  ```sh
+   docker-compose build credikfam_back
+   docker-compose up
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -177,11 +179,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/camiloandcu
 [product-screenshot]: images/screenshot.png
-[SpringBoot]: https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white
+[SpringBoot]: https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Spring&logoColor=white
 [SpringBoot-url]: https://spring.io/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
+[Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://www.docker.com/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
