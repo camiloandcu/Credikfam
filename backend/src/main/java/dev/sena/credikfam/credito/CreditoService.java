@@ -7,4 +7,7 @@ public interface CreditoService {
     CreditoDto findById(Long id);
     CreditoDto save(CreditoDto creditoDto);
     void delete(Long id);
+    List<CreditoDto> findByAprobado(Boolean aprobado);
+
+    void aprobar(Long id);
 }
