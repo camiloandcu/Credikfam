@@ -33,7 +33,7 @@ public class CreditoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CreditoDto> updateCredito(@PathVariable Long id, @RequestBody CreditoDto creditoDto) {
-        creditoDto.setCreditoId(id);
+        creditoDto.setId(id);
         CreditoDto updatedCredito = creditoService.save(creditoDto);
         return ResponseEntity.ok(updatedCredito);
     }
@@ -41,6 +41,18 @@ public class CreditoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCredito(@PathVariable Long id) {
         creditoService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/aprobado/{aprobado}")
+    public ResponseEntity<List<CreditoDto>> getCreditoByAprobado(@PathVariable Boolean aprobado) {
+        List<CreditoDto> creditos = creditoService.findByAprobado(aprobado);
+        return ResponseEntity.ok(creditos);
+    }
+
+    @PutMapping("/{id}/aprobar")
+    public ResponseEntity<Void> aprobarCredito(@PathVariable Long id) {
+        creditoService.aprobar(id);
         return ResponseEntity.noContent().build();
     }
 }

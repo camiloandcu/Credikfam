@@ -10,9 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FuncionarioDto {
-    private Long funcionarioId;
-    private Long empresaId;
-    private Long tipoFuncionarioId;
+    private Long id;
+    private String tipoFuncionario;
     private String nombre;
     private String apellido;
 }

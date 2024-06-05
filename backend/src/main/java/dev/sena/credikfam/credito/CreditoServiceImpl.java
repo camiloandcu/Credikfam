@@ -40,4 +40,19 @@ public class CreditoServiceImpl implements CreditoService {
     public void delete(Long id) {
         creditoRepository.deleteById(id);
     }
+
+    @Override
+    public List<CreditoDto> findByAprobado(Boolean aprobado) {
+        return creditoRepository.findByAprobado(aprobado).stream()
+                .map(creditoMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void aprobar(Long id) {
+        Credito credito = creditoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Credito no existe"));
+        credito.setAprobado(true);
+        creditoRepository.save(credito);
+    }
 }

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/funcionarios")
 public class FuncionarioController {
 
     private FuncionarioService funcionarioService;
@@ -34,7 +36,7 @@ public class FuncionarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<FuncionarioDto> update(@PathVariable Long id, @RequestBody FuncionarioDto funcionarioDto) {
-        funcionarioDto.setFuncionarioId(id);
+        funcionarioDto.setId(id);
         FuncionarioDto updatedFuncionario = funcionarioService.save(funcionarioDto);
         return ResponseEntity.ok(updatedFuncionario);
     }

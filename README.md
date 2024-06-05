@@ -117,7 +117,7 @@ To get a local copy up and running follow these simple example steps.
    git clone https://github.com/camiloandcu/Credikfam.git
    ```
 2. Use docker-compose
-  ```sh
+   ```sh
    docker-compose build credikfam_back
    docker-compose up
    ```
