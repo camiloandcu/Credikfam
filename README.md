@@ -6,7 +6,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT -->
-<br />
 <div align="center">
   <h3 align="center">Credikfam</h3>
   <p align="center">
