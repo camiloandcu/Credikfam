@@ -27,10 +27,10 @@ const ErrorPage = () => {
                 <Home sx={{ fontSize: 80, color: 'error.main' }} />
             </Box>
             <Typography variant="h4" component="h1" gutterBottom>
-                Oops! Page Not Found
+                ¡Vaya! Página no encontrada
             </Typography>
             <Typography variant="body1" gutterBottom>
-                The page you are looking for doesn't exist or an error occurred.
+                La página que estás buscando no existe o ha ocurrido un error.
             </Typography>
             <Button
                 variant="contained"
@@ -39,7 +39,7 @@ const ErrorPage = () => {
                 startIcon={<Home />}
                 sx={{ mt: 3 }}
             >
-                Go to Home
+                Ir a Inicio
             </Button>
         </Container>
     );

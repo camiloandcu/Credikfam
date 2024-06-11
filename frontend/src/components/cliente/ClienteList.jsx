@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Container, Box, Typography, Button, TableContainer, Paper, Table, TableHead, TableRow, TableCell, IconButton, TableBody } from '@mui/material';
 import { deleteCliente, getClientes } from '../../services/clienteService';
 import { Delete, Edit } from '@mui/icons-material';
+import LoadingPage from '../LoadingPage';
+import dayjs from 'dayjs';
 
 const ClienteList = () => {
     const [clientes, setClientes] = useState([]);
@@ -19,7 +21,9 @@ const ClienteList = () => {
     const handleDelete = async (id) => {
         await deleteCliente(id);
         fetchClientes();
-      };
+    };
+
+  if (!clientes) return <LoadingPage />;
 
     return (
         <Container>
@@ -46,6 +50,7 @@ const ClienteList = () => {
                             <TableCell>Telefono</TableCell>
                             <TableCell>Fecha Nacimiento</TableCell>
                             <TableCell>Ocupacion</TableCell>
+                            <TableCell>Acciones</TableCell>
                         </TableRow>
                     </TableHead>
             <TableBody>
@@ -56,7 +61,7 @@ const ClienteList = () => {
                     <TableCell>{cliente.direccion}</TableCell>
                     <TableCell>{cliente.telefono}</TableCell>
                     <TableCell>
-                        {new Date(cliente.fechaNacimiento).toLocaleDateString()}
+                        {new dayjs(cliente.fechaNacimiento).format("DD/MM/YYYY")}
                     </TableCell>
                     <TableCell>{cliente.ocupacion}</TableCell>
                     <TableCell>

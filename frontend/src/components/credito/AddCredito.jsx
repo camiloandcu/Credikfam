@@ -5,10 +5,14 @@ import { Container, TextField, Button, Typography, Autocomplete } from '@mui/mat
 import { getClientes } from '../../services/clienteService';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { getFuncionarios } from '../../services/funcionarioService';
+import LoadingPage from '../LoadingPage';
 
 const AddCredito = () => {
     const [clientes, setClientes] = useState([]);
+    const [funcionarios, setFuncionarios] = useState([]);
     const [clienteId, setClienteId] = useState();
+    const [funcionarioId, setFuncionarioId] = useState(); 
     const [razonCredito, setRazonCredito] = useState();
     const [montoSolicitado, setMontoSolicitado] = useState();
     const [fechaInicio, setFechaInicio] = useState();
@@ -21,6 +25,9 @@ const AddCredito = () => {
             cliente: {
                 id: clienteId
             }, 
+            funcionario: {
+                id: funcionarioId
+            },
             razonCredito, 
             montoSolicitado: Number(montoSolicitado), 
             fechaInicio, 
@@ -31,14 +38,22 @@ const AddCredito = () => {
         navigate('/creditos/pendientes');
     };
 
+    const fetchClientes = async () => {
+        const response = await getClientes();
+        setClientes(response.data);
+    };
+
+    const fetchFuncionarios = async () => { 
+        const response = await getFuncionarios();
+        setFuncionarios(response.data);
+    }
+
     useEffect(() => {
-        const fetchClientes = async () => {
-            const response = await getClientes();
-            setClientes(response.data);
-        };
-    
+        fetchFuncionarios();
         fetchClientes();
     }, []);
+
+    if (!clientes || !funcionarios) return <LoadingPage />;
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -55,13 +70,21 @@ const AddCredito = () => {
                             margin="normal"
                     />
                     <Autocomplete
-                        id="clienteId"
                         options={clientes}
                         getOptionLabel={(option) => `${option.nombre} ${option.apellido}`}
                         style={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Cliente" variant="outlined" margin="normal"/>}
                         onChange={(event, newValue) => {
                             setClienteId(newValue ? newValue.id : ''); 
+                        }}
+                    />
+                    <Autocomplete
+                        options={funcionarios}
+                        getOptionLabel={(option) => `${option.nombre} ${option.apellido}`}
+                        style={{ width: 300 }}
+                        renderInput={(params) => <TextField {...params} label="Funcionario" variant="outlined" margin="normal"/>}
+                        onChange={(event, newValue) => {
+                            setFuncionarioId(newValue ? newValue.id : ''); 
                         }}
                     />
                     <TextField

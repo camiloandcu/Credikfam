@@ -13,6 +13,7 @@ import {
     Button,
     IconButton,
     Typography,
+    Box,
 } from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
 
@@ -35,41 +36,41 @@ const FuncionarioList = () => {
 
     return (
         <Container>
-            <Typography variant="h4" gutterBottom>
-                Funcionario List
-            </Typography>
-            <Button variant="contained" color="primary" component={Link} to="/funcionarios/add">
-                Add Funcionario
-            </Button>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', mb: 2 }}> 
+                <Typography variant="h4" gutterBottom>
+                    Funcionarios
+                </Typography>
+                <Button variant="contained" color="primary" component={Link} to="/funcionarios/add">
+                    Añadir funcionario
+                </Button>
+            </Box>
             <TableContainer component={Paper} className="my-4">
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
                             <TableCell>Nombre</TableCell>
                             <TableCell>Apellido</TableCell>
                             <TableCell>Tipo Funcionario</TableCell>
-                            <TableCell>Actions</TableCell>
+                            <TableCell>Acciones</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {funcionarios.map((funcionario) => (
-                            <TableRow key={funcionario.funcionarioId}>
-                                <TableCell>{funcionario.funcionarioId}</TableCell>
+                            <TableRow key={funcionario.id}>
                                 <TableCell>{funcionario.nombre}</TableCell>
                                 <TableCell>{funcionario.apellido}</TableCell>
                                 <TableCell>{funcionario.tipoFuncionario}</TableCell>
                                 <TableCell>
                                     <IconButton
                                         component={Link}
-                                        to={`/funcionarios/update/${funcionario.funcionarioId}`}
+                                        to={`/funcionarios/update/${funcionario.id}`}
                                         color="primary"
                                     >
                                         <Edit />
                                     </IconButton>
                                     <IconButton
                                         color="secondary"
-                                        onClick={() => handleDelete(funcionario.funcionarioId)}
+                                        onClick={() => handleDelete(funcionario.id)}
                                     >
                                         <Delete />
                                     </IconButton>
