@@ -17,7 +17,7 @@ const Navbar = () => {
                 CREDIKFAM
             </Typography>
             <List>
-                <ListItem button component={Link} to="/creditos/aprobados">
+                <ListItem button component={Link} to="/clientes">
                     <ListItemIcon>
                         <People />
                     </ListItemIcon>

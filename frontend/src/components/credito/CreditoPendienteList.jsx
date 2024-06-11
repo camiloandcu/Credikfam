@@ -13,9 +13,11 @@ import {
   Button,
   IconButton,
   Typography,
-  Box,
+  Box
 } from "@mui/material";
 import { Edit, Delete, CheckCircle } from "@mui/icons-material";
+import LoadingPage from "../LoadingPage";
+import dayjs from "dayjs";
 
 const CreditoList = () => {
   const [creditos, setCreditos] = useState([]);
@@ -39,11 +41,13 @@ const CreditoList = () => {
     fetchCreditos();
   }
 
+  if (!creditos) return <LoadingPage />;
+
   return (
     <Container>
       <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', mb: 2}}>
         <Typography variant="h4" gutterBottom>
-          Creditos Pendientes
+          Créditos pendientes
         </Typography>
         <Button
           variant="contained"
@@ -60,6 +64,7 @@ const CreditoList = () => {
             <TableRow>
               <TableCell>Fecha</TableCell>
               <TableCell>Cliente</TableCell>
+              <TableCell>Funcionario</TableCell>
               <TableCell>Razón del crédito</TableCell>
               <TableCell>Monto solicitado</TableCell>
               <TableCell>Cuotas</TableCell>
@@ -70,10 +75,13 @@ const CreditoList = () => {
             {creditos.map((credito) => (
               <TableRow key={credito.id}>
                 <TableCell>
-                  {new Date(credito.fechaInicio).toLocaleDateString()}
+                  {new dayjs(credito.fechaInicio).format("DD/MM/YYYY")}
                 </TableCell>
                 <TableCell>
                   {credito.cliente.nombre} {credito.cliente.apellido}
+                </TableCell>
+                <TableCell>
+                  {credito.funcionario.nombre} {credito.funcionario.apellido}
                 </TableCell>
                 <TableCell>{credito.razonCredito}</TableCell>
                 <TableCell>{credito.montoSolicitado}</TableCell>

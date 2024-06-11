@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: dev.sena.credikfam.cliente.ClienteControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 1.089 s <<< FAILURE! -- in dev.sena.credikfam.cliente.ClienteControllerTest
+dev.sena.credikfam.cliente.ClienteControllerTest.shouldDeleteCliente -- Time elapsed: 1.023 s <<< ERROR!
+org.mockito.exceptions.misusing.NullInsteadOfMockException: 
+
+Argument passed to when() is null!
+Example of correct stubbing:
+    doThrow(new RuntimeException()).when(mock).someMethod();
+Also, if you use @Mock annotation don't miss openMocks()
+	at dev.sena.credikfam.cliente.ClienteControllerTest.shouldDeleteCliente(ClienteControllerTest.java:71)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+dev.sena.credikfam.cliente.ClienteControllerTest.shouldReturnAllClientes -- Time elapsed: 0.006 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "dev.sena.credikfam.cliente.ClienteService.findAll()" because "this.clienteService" is null
+	at dev.sena.credikfam.cliente.ClienteControllerTest.shouldReturnAllClientes(ClienteControllerTest.java:28)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+dev.sena.credikfam.cliente.ClienteControllerTest.shouldCreateCliente -- Time elapsed: 0.008 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "dev.sena.credikfam.cliente.ClienteService.save(dev.sena.credikfam.cliente.ClienteDto)" because "this.clienteService" is null
+	at dev.sena.credikfam.cliente.ClienteControllerTest.shouldCreateCliente(ClienteControllerTest.java:50)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+dev.sena.credikfam.cliente.ClienteControllerTest.shouldUpdateCliente -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "dev.sena.credikfam.cliente.ClienteService.save(dev.sena.credikfam.cliente.ClienteDto)" because "this.clienteService" is null
+	at dev.sena.credikfam.cliente.ClienteControllerTest.shouldUpdateCliente(ClienteControllerTest.java:61)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+dev.sena.credikfam.cliente.ClienteControllerTest.shouldReturnClienteById -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "dev.sena.credikfam.cliente.ClienteService.findById(java.lang.Long)" because "this.clienteService" is null
+	at dev.sena.credikfam.cliente.ClienteControllerTest.shouldReturnClienteById(ClienteControllerTest.java:39)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

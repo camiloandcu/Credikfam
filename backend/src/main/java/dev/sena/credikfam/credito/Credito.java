@@ -1,6 +1,7 @@
 package dev.sena.credikfam.credito;
 
 import dev.sena.credikfam.cliente.Cliente;
+import dev.sena.credikfam.funcionario.Funcionario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,11 @@ public class Credito {
     @JoinColumn(name = "cliente_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Funcionario funcionario;
 
     @Column(name = "razon_credito", nullable = false)
     private String razonCredito;

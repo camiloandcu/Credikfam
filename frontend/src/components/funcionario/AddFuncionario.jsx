@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createFuncionario } from '../../services/funcionarioService';
 import { useNavigate } from 'react-router-dom';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import { Container, TextField, Button, Typography, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
 const AddFuncionario = () => {
     const [nombre, setNombre] = useState('');
@@ -19,7 +19,7 @@ const AddFuncionario = () => {
     return (
         <Container>
             <Typography variant="h4" gutterBottom>
-                Add Funcionario
+                Nuevo funcionario
             </Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
@@ -36,15 +36,20 @@ const AddFuncionario = () => {
                     onChange={(e) => setApellido(e.target.value)}
                     margin="normal"
                 />
-                <TextField
-                    label="Tipo Funcionario"
-                    fullWidth
-                    value={tipoFuncionario}
-                    onChange={(e) => setTipoFuncionario(e.target.value)}
-                    margin="normal"
-                />
+                <FormControl fullWidth margin="normal">
+                    <InputLabel id="tipoFuncionario">Tipo Funcionario</InputLabel>
+                    <Select
+                        labelId="tipoFuncionario"
+                        label="Tipo Funcionario"
+                        value={tipoFuncionario}
+                        onChange={(e) => setTipoFuncionario(e.target.value)}
+                    >
+                        <MenuItem value="Asesor">Asesor</MenuItem>
+                        <MenuItem value="Analista">Analista</MenuItem>
+                    </Select>
+                </FormControl>
                 <Button variant="contained" color="primary" type="submit">
-                    Add
+                    Añadir
                 </Button>
             </form>
         </Container>

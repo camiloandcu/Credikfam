@@ -12,9 +12,11 @@ import {
   Paper,
   IconButton,
   Typography,
-  Box,
+  Box
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
+import LoadingPage from "../LoadingPage";
+import dayjs from "dayjs";
 
 const CreditoList = () => {
   const [creditos, setCreditos] = useState([]);
@@ -33,11 +35,13 @@ const CreditoList = () => {
     fetchCreditos();
   };
 
+  if (!creditos) return <LoadingPage />;
+
   return (
     <Container>
       <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', mb: 2}}>
         <Typography variant="h4" gutterBottom>
-          Creditos Aprobados
+          Créditos aprobados
         </Typography>
       </Box>
       <TableContainer component={Paper} className="my-4">
@@ -46,6 +50,7 @@ const CreditoList = () => {
             <TableRow>
               <TableCell>Fecha</TableCell>
               <TableCell>Cliente</TableCell>
+              <TableCell>Funcionario</TableCell>
               <TableCell>Razón del crédito</TableCell>
               <TableCell>Monto solicitado</TableCell>
               <TableCell>Cuotas</TableCell>
@@ -56,12 +61,13 @@ const CreditoList = () => {
             {creditos.map((credito) => (
               <TableRow key={credito.id}>
                 <TableCell>
-                  {new Date(credito.fechaInicio).toLocaleDateString()}
+                  {new dayjs(credito.fechaInicio).format("DD/MM/YYYY")}
                 </TableCell>
                 <TableCell>
-                  <span>ID: {credito.cliente.id}</span>
-                  <span>Nombre: {credito.cliente.nombre}</span>
-                  <span>Apellido: {credito.cliente.apellido}</span>
+                  {credito.cliente.nombre} {credito.cliente.apellido}
+                </TableCell>
+                <TableCell>
+                  {credito.funcionario.nombre} {credito.funcionario.apellido}
                 </TableCell>
                 <TableCell>{credito.razonCredito}</TableCell>
                 <TableCell>{credito.montoSolicitado}</TableCell>

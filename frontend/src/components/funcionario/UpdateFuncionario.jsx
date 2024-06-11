@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getFuncionarioById, updateFuncionario } from '../../services/funcionarioService';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import { Container, TextField, Button, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import LoadingPage from '../LoadingPage';
 
 const UpdateFuncionario = () => {
     const { id } = useParams();
@@ -23,12 +24,12 @@ const UpdateFuncionario = () => {
         navigate('/funcionarios');
     };
 
-    if (!funcionario) return <div>Loading...</div>;
+    if (!funcionario) return <LoadingPage/>;
 
     return (
         <Container>
             <Typography variant="h4" gutterBottom>
-                Update Funcionario
+                Actualizar funcionario
             </Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
@@ -45,15 +46,20 @@ const UpdateFuncionario = () => {
                     onChange={(e) => setFuncionario({ ...funcionario, apellido: e.target.value })}
                     margin="normal"
                 />
-                <TextField
-                    label="Tipo Funcionario"
-                    fullWidth
-                    value={funcionario.tipoFuncionario}
-                    onChange={(e) => setFuncionario({ ...funcionario, tipoFuncionario: e.target.value })}
-                    margin="normal"
-                />
+                <FormControl fullWidth margin="normal">
+                    <InputLabel id="tipoFuncionario">Tipo Funcionario</InputLabel>
+                    <Select
+                        labelId="tipoFuncionario"
+                        label="Tipo Funcionario"
+                        value={funcionario.tipoFuncionario}
+                        onChange={(e) => setFuncionario({...funcionario, tipoFuncionario: e.target.value})}
+                    >
+                        <MenuItem value="Asesor">Asesor</MenuItem>
+                        <MenuItem value="Analista">Analista</MenuItem>
+                    </Select>
+                </FormControl>
                 <Button variant="contained" color="primary" type="submit">
-                    Update
+                    Enviar
                 </Button>
             </form>
         </Container>
