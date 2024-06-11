@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Typography, Button, Paper, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
     return (
@@ -32,14 +33,16 @@ const HomePage = () => {
                     <Typography variant="body1">
                         Gestiona tus créditos con facilidad. Navega a las páginas de Funcionario o Crédito para comenzar.
                     </Typography>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{ marginTop: 2 }}
-                        href="/funcionarios"
-                    >
-                        Empezar
-                    </Button>
+                    <Link to="/funcionarios" style={{ textDecoration: 'none' }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            sx={{ marginTop: 2 }}
+                            href="/funcionarios"
+                        >
+                            Empezar
+                        </Button>
+                    </Link>
                 </Paper>
             </Container>
         </Box>
