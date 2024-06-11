@@ -15,7 +15,7 @@ const ClienteList = () => {
 
     const fetchClientes = async () => {
         const response = await getClientes();
-        console.log(response.data)
+        console.log(response)
         setClientes(response.data);
     };
 
